@@ -1,0 +1,75 @@
+services:
+  api:
+    build:
+      context: ../
+      dockerfile: apps/api/Dockerfile
+    container_name: breakmind-api
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: development
+    networks:
+      - breakmind-network
+    restart: unless-stopped
+
+  landing:
+    build:
+      context: ../
+      dockerfile: apps/landing/Dockerfile
+    container_name: breakmind-landing
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    networks:
+      - breakmind-network
+    restart: unless-stopped
+
+  oracle:
+    build:
+      context: ../
+      dockerfile: apps/oracle/Dockerfile
+    container_name: breakmind-oracle
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1
+    networks:
+      - breakmind-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql@16/data
+      - ./init:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis_server
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass "your_secure_password" --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "your_secure_password", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  breakmind-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

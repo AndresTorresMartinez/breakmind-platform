@@ -1,0 +1,21 @@
+{
+  "name": "breakmind-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:api": "pnpm --filter @breakmind/api dev",
+    "build:api": "pnpm --filter @breakmind/api build",
+    "start:api": "pnpm --filter @breakmind/api start"
+  },
+  "packageManager": "pnpm@12.3.4",
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "typescript": "^7.0.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "unrs-resolver"
+    ]
+  }
+}

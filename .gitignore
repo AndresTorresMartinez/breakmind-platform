@@ -1,0 +1,144 @@
+# ─────────────────────────────────
+# Node / TypeScript / pnpm
+# ─────────────────────────────────
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npmrc
+# NOTA: pnpm-lock.yaml SÍ se commitea, no lo ignores
+
+# TypeScript build output
+dist/
+build/
+*.tsbuildinfo
+
+# ─────────────────────────────────
+# Next.js (apps/landing)
+# ─────────────────────────────────
+.next/
+out/
+next-env.d.ts
+.vercel/
+
+# ─────────────────────────────────
+# Python (apps/oracle)
+# ─────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.python-version
+
+# Poetry / uv / pip lockfiles → SÍ se commitean, no ignores:
+# poetry.lock, uv.lock, requirements.txt
+
+# ─────────────────────────────────
+# Environment variables & secrets
+# ─────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+# Ejemplo template SÍ se commitea:
+!.env.example
+!.env.sample
+
+# ─────────────────────────────────
+# Terraform (Wave 1b y 1c)
+# ─────────────────────────────────
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+!terraform.tfvars.example
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# ─────────────────────────────────
+# AWS / cloud credentials
+# ─────────────────────────────────
+.aws/
+aws-credentials
+*.pem
+*.key
+
+# ─────────────────────────────────
+# Docker
+# ─────────────────────────────────
+docker-compose.override.yml
+.dockerignore.local
+
+# ─────────────────────────────────
+# Testing / coverage
+# ─────────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+
+# ─────────────────────────────────
+# Logs & databases locales
+# ─────────────────────────────────
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+
+# ─────────────────────────────────
+# Editor / IDE
+# ─────────────────────────────────
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+.zed/
+
+# ─────────────────────────────────
+# macOS
+# ─────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ─────────────────────────────────
+# Godot (game-integration folder)
+# ─────────────────────────────────
+godot-integration/.godot/
+godot-integration/.import/
+godot-integration/export.cfg
+godot-integration/export_credentials.cfg
+
+# ─────────────────────────────────
+# Misc temporales
+# ─────────────────────────────────
+tmp/
+temp/
+*.tmp
+.cache/
