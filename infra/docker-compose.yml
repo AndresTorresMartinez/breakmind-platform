@@ -8,6 +8,9 @@ services:
       - "8080:8080"
     environment:
       NODE_ENV: development
+    volumes:
+      - ../apps/api:/app/apps/api
+      - /app/node_modules
     networks:
       - breakmind-network
     restart: unless-stopped
@@ -20,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
     networks:
       - breakmind-network
     restart: unless-stopped
@@ -42,11 +45,11 @@ services:
     image: postgres:16
     container_name: postgres
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - postgres_data:/var/lib/postgresql@16/data
+      - postgres_data:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
@@ -57,7 +60,9 @@ services:
     restart: unless-stopped
     ports:
       - "6379:6379"
-    command: redis-server --requirepass "your_secure_password" --appendonly yes
+    command: redis-server --requirepass $$REDIS_PASSWORD --appendonly yes
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - redis_data:/data
     healthcheck:
