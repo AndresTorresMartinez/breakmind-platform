@@ -22,7 +22,7 @@ provider "aws" {
 
 module "github_oidc" {
   source = "./modules/github-oidc"
-  repo   = "AndresTorresMartinez/breakmind-platform"
+  repo   = "AndresTorresMartinez@19475858/breakmind-platform@1365002336"
 }
 
 output "github_oidc_role_arn" {
