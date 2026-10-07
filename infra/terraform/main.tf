@@ -19,3 +19,12 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
+module "github_oidc" {
+  source = "./modules/github-oidc"
+  repo   = "AndresTorresMartinez/breakmind-platform"
+}
+
+output "github_oidc_role_arn" {
+  value = module.github_oidc.role_arn
+}
